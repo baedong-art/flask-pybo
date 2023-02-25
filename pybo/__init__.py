@@ -5,8 +5,6 @@ from sqlalchemy import MetaData
 from flaskext.markdown import Markdown
 
 
-import config
-
 
 
 naming_convention = {
@@ -21,7 +19,7 @@ migrate = Migrate()
 
 def create_app(): # create_app은 플라스크 내부에서 정의된 함수명
     app = Flask(__name__)
-    app.config.from_object(config)
+    app.config.from_envvar('APP_CONFIG_FILE')
 
     #ORM
     db.init_app(app)
